@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCmltrMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCmltr">
+        <id column="cm_key" jdbcType="INTEGER" property="cmKey"/>
+        <result column="cm_id" jdbcType="INTEGER" property="cmId"/>
+        <result column="cm_tdate" jdbcType="DATE" property="cmTdate"/>
+        <result column="cm_sub" jdbcType="VARCHAR" property="cmSub"/>
+        <result column="cm_tunit" jdbcType="VARCHAR" property="cmTunit"/>
+        <result column="cm_startdate" jdbcType="DATE" property="cmStartdate"/>
+        <result column="cm_enddate" jdbcType="DATE" property="cmEnddate"/>
+        <result column="cm_know" jdbcType="VARCHAR" property="cmKnow"/>
+        <result column="cm_credit" jdbcType="INTEGER" property="cmCredit"/>
+        <result column="cm_score" jdbcType="DOUBLE" property="cmScore"/>
+        <result column="cm_attachment" jdbcType="VARCHAR" property="cmAttachment"/>
+        <result column="cm_remark" jdbcType="VARCHAR" property="cmRemark"/>
+        <result column="cm_modification_date" jdbcType="DATE" property="cmModificationDate"/>
+        <result column="cm_modification_person" jdbcType="VARCHAR" property="cmModificationPerson"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    cm_key, cm_id, cm_tdate, cm_sub, cm_tunit, cm_startdate, cm_enddate, cm_know, cm_credit, 
+    cm_score, cm_attachment, cm_remark, cm_modification_date, cm_modification_person
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cmltr
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cmltr
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCmltr">
+     insert into gzcrm_cmltr (cm_id, cm_tdate,
+      cm_sub, cm_tunit, cm_startdate,
+      cm_enddate, cm_know, cm_credit,
+      cm_score, cm_attachment, cm_remark,
+      cm_modification_date, cm_modification_person)
+    values (#{cmId,jdbcType=INTEGER}, #{cmTdate,jdbcType=DATE},
+      #{cmSub,jdbcType=VARCHAR}, #{cmTunit,jdbcType=VARCHAR}, #{cmStartdate,jdbcType=DATE},
+      #{cmEnddate,jdbcType=DATE}, #{cmKnow,jdbcType=VARCHAR}, #{cmCredit,jdbcType=INTEGER},
+      #{cmScore,jdbcType=DOUBLE}, #{cmAttachment,jdbcType=VARCHAR}, #{cmRemark,jdbcType=VARCHAR},
+      curdate(), #{cmModificationPerson,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCmltr">
+        <selectKey keyProperty="cmKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_cmltr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cm_key,
+            <if test="cmId != null">
+                cm_id,
+            </if>
+            <if test="cmTdate != null">
+                cm_tdate,
+            </if>
+            <if test="cmSub != null">
+                cm_sub,
+            </if>
+            <if test="cmTunit != null">
+                cm_tunit,
+            </if>
+            <if test="cmStartdate != null">
+                cm_startdate,
+            </if>
+            <if test="cmEnddate != null">
+                cm_enddate,
+            </if>
+            <if test="cmKnow != null">
+                cm_know,
+            </if>
+            <if test="cmCredit != null">
+                cm_credit,
+            </if>
+            <if test="cmScore != null">
+                cm_score,
+            </if>
+            <if test="cmAttachment != null">
+                cm_attachment,
+            </if>
+            <if test="cmRemark != null">
+                cm_remark,
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date,
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cmKey,jdbcType=INTEGER},
+            <if test="cmId != null">
+                #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmTdate != null">
+                #{cmTdate,jdbcType=DATE},
+            </if>
+            <if test="cmSub != null">
+                #{cmSub,jdbcType=VARCHAR},
+            </if>
+            <if test="cmTunit != null">
+                #{cmTunit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStartdate != null">
+                #{cmStartdate,jdbcType=DATE},
+            </if>
+            <if test="cmEnddate != null">
+                #{cmEnddate,jdbcType=DATE},
+            </if>
+            <if test="cmKnow != null">
+                #{cmKnow,jdbcType=VARCHAR},
+            </if>
+            <if test="cmCredit != null">
+                #{cmCredit,jdbcType=INTEGER},
+            </if>
+            <if test="cmScore != null">
+                #{cmScore,jdbcType=DOUBLE},
+            </if>
+            <if test="cmAttachment != null">
+                #{cmAttachment,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRemark != null">
+                #{cmRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationDate != null">
+                #{cmModificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmModificationPerson != null">
+                #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCmltr">
+        update gzcrm_cmltr
+        <set>
+            <if test="cmId != null">
+                cm_id = #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmTdate != null">
+                cm_tdate = #{cmTdate,jdbcType=DATE},
+            </if>
+            <if test="cmSub != null">
+                cm_sub = #{cmSub,jdbcType=VARCHAR},
+            </if>
+            <if test="cmTunit != null">
+                cm_tunit = #{cmTunit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStartdate != null">
+                cm_startdate = #{cmStartdate,jdbcType=DATE},
+            </if>
+            <if test="cmEnddate != null">
+                cm_enddate = #{cmEnddate,jdbcType=DATE},
+            </if>
+            <if test="cmKnow != null">
+                cm_know = #{cmKnow,jdbcType=VARCHAR},
+            </if>
+            <if test="cmCredit != null">
+                cm_credit = #{cmCredit,jdbcType=INTEGER},
+            </if>
+            <if test="cmScore != null">
+                cm_score = #{cmScore,jdbcType=DOUBLE},
+            </if>
+            <if test="cmAttachment != null">
+                cm_attachment = #{cmAttachment,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRemark != null">
+                cm_remark = #{cmRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date = #{cmModificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCmltr">
+    update gzcrm_cmltr
+    set cm_id = #{cmId,jdbcType=INTEGER},
+      cm_tdate = #{cmTdate,jdbcType=DATE},
+      cm_sub = #{cmSub,jdbcType=VARCHAR},
+      cm_tunit = #{cmTunit,jdbcType=VARCHAR},
+      cm_startdate = #{cmStartdate,jdbcType=DATE},
+      cm_enddate = #{cmEnddate,jdbcType=DATE},
+      cm_know = #{cmKnow,jdbcType=VARCHAR},
+      cm_credit = #{cmCredit,jdbcType=INTEGER},
+      cm_score = #{cmScore,jdbcType=DOUBLE},
+      cm_attachment = #{cmAttachment,jdbcType=VARCHAR},
+      cm_remark = #{cmRemark,jdbcType=VARCHAR},
+      cm_modification_date = #{cmModificationDate,jdbcType=DATE},
+      cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR}
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cmltr
+        where 1 = 1
+        <if test="p1 != null and p1 != ''">
+            and cm_id = #{p1}
+        </if>
+        <if test="p2!=null and p2!=''">
+            and cm_tdate = #{p2}
+        </if>
+        <if test="p3 != null and p3 != '' and p3 != '%null%'">
+            and cm_sub like #{p3}
+        </if>
+    </select>
+</mapper>

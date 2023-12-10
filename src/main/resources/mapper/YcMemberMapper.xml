@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.YcMemberMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.YcMember">
+        <id column="mem_id" jdbcType="INTEGER" property="memId"/>
+        <result column="cname" jdbcType="VARCHAR" property="cname"/>
+        <result column="mem_pass" jdbcType="VARCHAR" property="memPass"/>
+        <result column="mem_sex" jdbcType="VARCHAR" property="memSex"/>
+        <result column="mem_born" jdbcType="DATE" property="memBorn"/>
+        <result column="mem_mail" jdbcType="VARCHAR" property="memMail"/>
+        <result column="mem_question" jdbcType="VARCHAR" property="memQuestion"/>
+        <result column="mem_answer" jdbcType="VARCHAR" property="memAnswer"/>
+        <result column="register_time" jdbcType="DATE" property="registerTime"/>
+        <result column="last_time" jdbcType="DATE" property="lastTime"/>
+        <result column="isenable" jdbcType="VARCHAR" property="isenable"/>
+        <result column="roleid" jdbcType="INTEGER" property="roleid"/>
+        <result column="others" jdbcType="VARCHAR" property="others"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    mem_id, cname, mem_pass, mem_sex, mem_born, mem_mail, mem_question, mem_answer, register_time,
+    last_time, isenable, roleid, others
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from yc_member
+        where mem_id = #{memId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yc_member
+    where mem_id = #{memId,jdbcType=INTEGER}
+  </delete>
+
+    <!--添加用户 -->
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.YcMember">
+    insert into yc_member (cname, mem_pass,
+      mem_sex, mem_born, mem_mail,
+      mem_question, mem_answer, register_time,
+      last_time, isenable, roleid,
+      others)
+    values (#{cname,jdbcType=VARCHAR}, #{memPass,jdbcType=VARCHAR},
+      #{memSex,jdbcType=VARCHAR}, #{memBorn,jdbcType=DATE}, #{memMail,jdbcType=VARCHAR},
+      #{memQuestion,jdbcType=VARCHAR}, #{memAnswer,jdbcType=VARCHAR}, curdate(),
+      curdate(), 'T', #{roleid,jdbcType=INTEGER},
+      #{others,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.YcMember">
+        insert into yc_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            mem_id,
+            <if test="cname != null">
+                cname,
+            </if>
+            <if test="memPass != null">
+                mem_pass,
+            </if>
+            <if test="memSex != null">
+                mem_sex,
+            </if>
+            <if test="memBorn != null">
+                mem_born,
+            </if>
+            <if test="memMail != null">
+                mem_mail,
+            </if>
+            <if test="memQuestion != null">
+                mem_question,
+            </if>
+            <if test="memAnswer != null">
+                mem_answer,
+            </if>
+            <if test="registerTime != null">
+                register_time,
+            </if>
+            <if test="lastTime != null">
+                last_time,
+            </if>
+            <if test="isenable != null">
+                isenable,
+            </if>
+            <if test="roleid != null">
+                roleid,
+            </if>
+            <if test="others != null">
+                others,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{memId,jdbcType=INTEGER},
+            <if test="cname != null">
+                #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="memPass != null">
+                #{memPass,jdbcType=VARCHAR},
+            </if>
+            <if test="memSex != null">
+                #{memSex,jdbcType=VARCHAR},
+            </if>
+            <if test="memBorn != null">
+                #{memBorn,jdbcType=DATE},
+            </if>
+            <if test="memMail != null">
+                #{memMail,jdbcType=VARCHAR},
+            </if>
+            <if test="memQuestion != null">
+                #{memQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="memAnswer != null">
+                #{memAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                #{registerTime,jdbcType=DATE},
+            </if>
+            <if test="lastTime != null">
+                #{lastTime,jdbcType=DATE},
+            </if>
+            <if test="isenable != null">
+                #{isenable,jdbcType=VARCHAR},
+            </if>
+            <if test="roleid != null">
+                #{roleid,jdbcType=INTEGER},
+            </if>
+            <if test="others != null">
+                #{others,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.YcMember">
+        update yc_member
+        <set>
+            <if test="cname != null">
+                cname = #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="memPass != null">
+                mem_pass = #{memPass,jdbcType=VARCHAR},
+            </if>
+            <if test="memSex != null">
+                mem_sex = #{memSex,jdbcType=VARCHAR},
+            </if>
+            <if test="memBorn != null">
+                mem_born = #{memBorn,jdbcType=DATE},
+            </if>
+            <if test="memMail != null">
+                mem_mail = #{memMail,jdbcType=VARCHAR},
+            </if>
+            <if test="memQuestion != null">
+                mem_question = #{memQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="memAnswer != null">
+                mem_answer = #{memAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime,jdbcType=DATE},
+            </if>
+            <if test="lastTime != null">
+                last_time = #{lastTime,jdbcType=DATE},
+            </if>
+            <if test="isenable != null">
+                isenable = #{isenable,jdbcType=VARCHAR},
+            </if>
+            <if test="roleid != null">
+                roleid = #{roleid,jdbcType=INTEGER},
+            </if>
+            <if test="others != null">
+                others = #{others,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where mem_id = #{memId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.YcMember">
+    update yc_member
+    set cname = #{cname,jdbcType=VARCHAR},
+      mem_pass = #{memPass,jdbcType=VARCHAR},
+      mem_sex = #{memSex,jdbcType=VARCHAR},
+      mem_born = #{memBorn,jdbcType=DATE},
+      mem_mail = #{memMail,jdbcType=VARCHAR},
+      mem_question = #{memQuestion,jdbcType=VARCHAR},
+      mem_answer = #{memAnswer,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=DATE},
+      last_time = #{lastTime,jdbcType=DATE},
+      isenable = #{isenable,jdbcType=VARCHAR},
+      roleid = #{roleid,jdbcType=INTEGER},
+      others = #{others,jdbcType=VARCHAR}
+    where mem_id = #{memId,jdbcType=INTEGER}
+  </update>
+    <select id="login" resultMap="BaseResultMap">
+    select *
+    from yc_member
+    where cname = #{cname} and mem_pass = #{memPass,jdbcType=VARCHAR} and isenable = 'T'
+  </select>
+
+    <select id="queryMemberList" resultMap="BaseResultMap">
+        select *
+        from yc_member
+        where 1 = 1
+        <if test="cname!=null and cname!='%null%' and cname != ''">
+            and cname like #{cname}
+        </if>
+    </select>
+    <update id="updateStatusById">
+    update yc_member
+    set isenable = #{status}
+    where mem_id = #{memId}
+  </update>
+    <update id="resetPassById">
+    update yc_member
+    set mem_pass = '123456'
+    where mem_id = #{memId}
+  </update>
+</mapper>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCmassMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCmass">
+        <id column="cm_key" jdbcType="INTEGER" property="cmKey"/>
+        <result column="cm_id" jdbcType="INTEGER" property="cmId"/>
+        <result column="cm_asstime" jdbcType="DATE" property="cmAsstime"/>
+        <result column="cm_assub" jdbcType="VARCHAR" property="cmAssub"/>
+        <result column="cm_assperiod" jdbcType="VARCHAR" property="cmAssperiod"/>
+        <result column="cm_assperesult" jdbcType="VARCHAR" property="cmAssperesult"/>
+        <result column="cm_assraisal" jdbcType="VARCHAR" property="cmAssraisal"/>
+        <result column="cm_assunit" jdbcType="VARCHAR" property="cmAssunit"/>
+        <result column="cm_remark" jdbcType="VARCHAR" property="cmRemark"/>
+        <result column="cm_atttachment" jdbcType="VARCHAR" property="cmAtttachment"/>
+        <result column="cm_modification_person" jdbcType="VARCHAR" property="cmModificationPerson"/>
+        <result column="cm_modification_date" jdbcType="DATE" property="cmModificationDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    cm_key, cm_id, cm_asstime, cm_assub, cm_assperiod, cm_assperesult, cm_assraisal, 
+    cm_assunit, cm_remark, cm_atttachment, cm_modification_person, cm_modification_date
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cmass
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cmass
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCmass">
+    insert into gzcrm_cmass (cm_id, cm_asstime,
+      cm_assub, cm_assperiod, cm_assperesult, 
+      cm_assraisal, cm_assunit, cm_remark, 
+      cm_atttachment, cm_modification_person, cm_modification_date
+      )
+    values (#{cmId,jdbcType=INTEGER}, #{cmAsstime,jdbcType=DATE},
+      #{cmAssub,jdbcType=VARCHAR}, #{cmAssperiod,jdbcType=VARCHAR}, #{cmAssperesult,jdbcType=VARCHAR},
+      #{cmAssraisal,jdbcType=VARCHAR}, #{cmAssunit,jdbcType=VARCHAR}, #{cmRemark,jdbcType=VARCHAR},
+      #{cmAtttachment,jdbcType=VARCHAR}, #{cmModificationPerson,jdbcType=VARCHAR}, curdate()
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCmass">
+        <selectKey keyProperty="cmKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_cmass
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cm_key,
+            <if test="cmId != null">
+                cm_id,
+            </if>
+            <if test="cmAsstime != null">
+                cm_asstime,
+            </if>
+            <if test="cmAssub != null">
+                cm_assub,
+            </if>
+            <if test="cmAssperiod != null">
+                cm_assperiod,
+            </if>
+            <if test="cmAssperesult != null">
+                cm_assperesult,
+            </if>
+            <if test="cmAssraisal != null">
+                cm_assraisal,
+            </if>
+            <if test="cmAssunit != null">
+                cm_assunit,
+            </if>
+            <if test="cmRemark != null">
+                cm_remark,
+            </if>
+            <if test="cmAtttachment != null">
+                cm_atttachment,
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person,
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cmKey,jdbcType=INTEGER},
+            <if test="cmId != null">
+                #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmAsstime != null">
+                #{cmAsstime,jdbcType=DATE},
+            </if>
+            <if test="cmAssub != null">
+                #{cmAssub,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssperiod != null">
+                #{cmAssperiod,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssperesult != null">
+                #{cmAssperesult,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssraisal != null">
+                #{cmAssraisal,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssunit != null">
+                #{cmAssunit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRemark != null">
+                #{cmRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAtttachment != null">
+                #{cmAtttachment,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationPerson != null">
+                #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationDate != null">
+                #{cmModificationDate,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCmass">
+        update gzcrm_cmass
+        <set>
+            <if test="cmId != null">
+                cm_id = #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmAsstime != null">
+                cm_asstime = #{cmAsstime,jdbcType=DATE},
+            </if>
+            <if test="cmAssub != null">
+                cm_assub = #{cmAssub,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssperiod != null">
+                cm_assperiod = #{cmAssperiod,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssperesult != null">
+                cm_assperesult = #{cmAssperesult,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssraisal != null">
+                cm_assraisal = #{cmAssraisal,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAssunit != null">
+                cm_assunit = #{cmAssunit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRemark != null">
+                cm_remark = #{cmRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAtttachment != null">
+                cm_atttachment = #{cmAtttachment,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date = #{cmModificationDate,jdbcType=DATE},
+            </if>
+        </set>
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCmass">
+    update gzcrm_cmass
+    set cm_id = #{cmId,jdbcType=INTEGER},
+      cm_asstime = #{cmAsstime,jdbcType=DATE},
+      cm_assub = #{cmAssub,jdbcType=VARCHAR},
+      cm_assperiod = #{cmAssperiod,jdbcType=VARCHAR},
+      cm_assperesult = #{cmAssperesult,jdbcType=VARCHAR},
+      cm_assraisal = #{cmAssraisal,jdbcType=VARCHAR},
+      cm_assunit = #{cmAssunit,jdbcType=VARCHAR},
+      cm_remark = #{cmRemark,jdbcType=VARCHAR},
+      cm_atttachment = #{cmAtttachment,jdbcType=VARCHAR},
+      cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR},
+      cm_modification_date = #{cmModificationDate,jdbcType=DATE}
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cmass
+        where 1 = 1
+        <if test="p1 != null and p1 != ''">
+            and cm_id = #{p1}
+        </if>
+        <if test="p2!=null and p2 != '' ">
+            and cm_asstime = #{p2}
+        </if>
+    </select>
+</mapper>

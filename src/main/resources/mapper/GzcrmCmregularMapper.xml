@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCmregularMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCmregular">
+        <id column="cm_key" jdbcType="INTEGER" property="cmKey"/>
+        <result column="cm_id" jdbcType="INTEGER" property="cmId"/>
+        <result column="cm_regular_date" jdbcType="DATE" property="cmRegularDate"/>
+        <result column="cm_regular_personnel" jdbcType="VARCHAR" property="cmRegularPersonnel"/>
+        <result column="cm_regular_theme" jdbcType="VARCHAR" property="cmRegularTheme"/>
+        <result column="cm_attachment" jdbcType="VARCHAR" property="cmAttachment"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+     cm_key, cm_id, cm_regular_date, cm_regular_personnel, cm_regular_theme, cm_attachment
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cmregular
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cmregular
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCmregular">
+       insert into gzcrm_cmregular ( cm_id, cm_regular_date,
+      cm_regular_personnel, cm_regular_theme, cm_attachment
+      )
+    values ( #{cmId,jdbcType=INTEGER}, #{cmRegularDate,jdbcType=DATE},
+      #{cmRegularPersonnel,jdbcType=VARCHAR}, #{cmRegularTheme,jdbcType=VARCHAR}, #{cmAttachment,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCmregular">
+        <selectKey keyProperty="cmKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_cmregular
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cm_key,
+            <if test="cmId != null">
+                cm_id,
+            </if>
+            <if test="cmRegularDate != null">
+                cm_regular_date,
+            </if>
+            <if test="cmRegularPersonnel != null">
+                cm_regular_personnel,
+            </if>
+            <if test="cmRegularTheme != null">
+                cm_regular_theme,
+            </if>
+            <if test="cmAttachment != null">
+                cm_attachment,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cmKey,jdbcType=INTEGER},
+            <if test="cmId != null">
+                #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmRegularDate != null">
+                #{cmRegularDate,jdbcType=DATE},
+            </if>
+            <if test="cmRegularPersonnel != null">
+                #{cmRegularPersonnel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRegularTheme != null">
+                #{cmRegularTheme,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAttachment != null">
+                #{cmAttachment,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCmregular">
+        update gzcrm_cmregular
+        <set>
+            <if test="cmId != null">
+                cm_id = #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmRegularDate != null">
+                cm_regular_date = #{cmRegularDate,jdbcType=DATE},
+            </if>
+            <if test="cmRegularPersonnel != null">
+                cm_regular_personnel = #{cmRegularPersonnel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmRegularTheme != null">
+                cm_regular_theme = #{cmRegularTheme,jdbcType=VARCHAR},
+            </if>
+            <if test="cmAttachment != null">
+                cm_attachment = #{cmAttachment,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCmregular">
+    update gzcrm_cmregular
+    set cm_id = #{cmId,jdbcType=INTEGER},
+      cm_regular_date = #{cmRegularDate,jdbcType=DATE},
+      cm_regular_personnel = #{cmRegularPersonnel,jdbcType=VARCHAR},
+      cm_regular_theme = #{cmRegularTheme,jdbcType=VARCHAR},
+      cm_attachment = #{cmAttachment,jdbcType=VARCHAR}
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryRegularList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cmregular
+        where 1 = 1
+        <if test="mDate!=null and mDate!=''">
+            and cm_regular_date = #{mDate}
+        </if>
+        <if test="mTheme!=null and mTheme!='' and mTheme!='%null%'">
+            and cm_regular_theme like #{mTheme}
+        </if>
+    </select>
+</mapper>

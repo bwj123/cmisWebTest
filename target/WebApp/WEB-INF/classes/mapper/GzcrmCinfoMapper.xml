@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCinfoMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCinfo">
+        <id column="c_key" jdbcType="INTEGER" property="cKey"/>
+        <result column="c_cm_id" jdbcType="INTEGER" property="cCmId"/>
+        <result column="c_ssn" jdbcType="VARCHAR" property="cSsn"/>
+        <result column="c_name" jdbcType="VARCHAR" property="cName"/>
+        <result column="c_tel" jdbcType="VARCHAR" property="cTel"/>
+        <result column="c_salary" jdbcType="DOUBLE" property="cSalary"/>
+        <result column="c_balance" jdbcType="DOUBLE" property="cBalance"/>
+        <result column="c_debt" jdbcType="DOUBLE" property="cDebt"/>
+        <result column="c_business" jdbcType="VARCHAR" property="cBusiness"/>
+        <result column="c_unit" jdbcType="VARCHAR" property="cUnit"/>
+        <result column="c_add" jdbcType="VARCHAR" property="cAdd"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    c_key, c_cm_id, c_ssn, c_name, c_tel, c_salary, c_balance, c_debt, c_business, c_unit, 
+    c_add
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cinfo
+        where c_key = #{cKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cinfo
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCinfo">
+    insert into gzcrm_cinfo (c_cm_id, c_ssn,
+      c_name, c_tel, c_salary, 
+      c_balance, c_debt, c_business, 
+      c_unit, c_add)
+   values (#{cCmId,jdbcType=INTEGER}, #{cSsn,jdbcType=VARCHAR},
+      #{cName,jdbcType=VARCHAR}, #{cTel,jdbcType=VARCHAR}, #{cSalary,jdbcType=DOUBLE}, 
+      #{cBalance,jdbcType=DOUBLE}, #{cDebt,jdbcType=DOUBLE}, #{cBusiness,jdbcType=VARCHAR}, 
+      #{cUnit,jdbcType=VARCHAR}, #{cAdd,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCinfo">
+        <selectKey keyProperty="cKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_cinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            c_key,
+            <if test="cCmId != null">
+                c_cm_id,
+            </if>
+            <if test="cSsn != null">
+                c_ssn,
+            </if>
+            <if test="cName != null">
+                c_name,
+            </if>
+            <if test="cTel != null">
+                c_tel,
+            </if>
+            <if test="cSalary != null">
+                c_salary,
+            </if>
+            <if test="cBalance != null">
+                c_balance,
+            </if>
+            <if test="cDebt != null">
+                c_debt,
+            </if>
+            <if test="cBusiness != null">
+                c_business,
+            </if>
+            <if test="cUnit != null">
+                c_unit,
+            </if>
+            <if test="cAdd != null">
+                c_add,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cKey,jdbcType=INTEGER},
+            <if test="cCmId != null">
+                #{cCmId,jdbcType=INTEGER},
+            </if>
+            <if test="cSsn != null">
+                #{cSsn,jdbcType=VARCHAR},
+            </if>
+            <if test="cName != null">
+                #{cName,jdbcType=VARCHAR},
+            </if>
+            <if test="cTel != null">
+                #{cTel,jdbcType=VARCHAR},
+            </if>
+            <if test="cSalary != null">
+                #{cSalary,jdbcType=DOUBLE},
+            </if>
+            <if test="cBalance != null">
+                #{cBalance,jdbcType=DOUBLE},
+            </if>
+            <if test="cDebt != null">
+                #{cDebt,jdbcType=DOUBLE},
+            </if>
+            <if test="cBusiness != null">
+                #{cBusiness,jdbcType=VARCHAR},
+            </if>
+            <if test="cUnit != null">
+                #{cUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="cAdd != null">
+                #{cAdd,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCinfo">
+        update gzcrm_cinfo
+        <set>
+            <if test="cCmId != null">
+                c_cm_id = #{cCmId,jdbcType=INTEGER},
+            </if>
+            <if test="cSsn != null">
+                c_ssn = #{cSsn,jdbcType=VARCHAR},
+            </if>
+            <if test="cName != null">
+                c_name = #{cName,jdbcType=VARCHAR},
+            </if>
+            <if test="cTel != null">
+                c_tel = #{cTel,jdbcType=VARCHAR},
+            </if>
+            <if test="cSalary != null">
+                c_salary = #{cSalary,jdbcType=DOUBLE},
+            </if>
+            <if test="cBalance != null">
+                c_balance = #{cBalance,jdbcType=DOUBLE},
+            </if>
+            <if test="cDebt != null">
+                c_debt = #{cDebt,jdbcType=DOUBLE},
+            </if>
+            <if test="cBusiness != null">
+                c_business = #{cBusiness,jdbcType=VARCHAR},
+            </if>
+            <if test="cUnit != null">
+                c_unit = #{cUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="cAdd != null">
+                c_add = #{cAdd,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where c_key = #{cKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCinfo">
+    update gzcrm_cinfo
+    set c_cm_id = #{cCmId,jdbcType=INTEGER},
+      c_ssn = #{cSsn,jdbcType=VARCHAR},
+      c_name = #{cName,jdbcType=VARCHAR},
+      c_tel = #{cTel,jdbcType=VARCHAR},
+      c_salary = #{cSalary,jdbcType=DOUBLE},
+      c_balance = #{cBalance,jdbcType=DOUBLE},
+      c_debt = #{cDebt,jdbcType=DOUBLE},
+      c_business = #{cBusiness,jdbcType=VARCHAR},
+      c_unit = #{cUnit,jdbcType=VARCHAR},
+      c_add = #{cAdd,jdbcType=VARCHAR}
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryCinfoList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cinfo
+        where 1 = 1
+        <if test="p1 != null and p1 != '' and p1 != '%null%'">
+            and c_name like #{p1}
+        </if>
+        <if test="p1 != null and p1 != '' and p2 != '%null%'">
+            and c_ssn like #{p2}
+        </if>
+    </select>
+</mapper>

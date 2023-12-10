@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCmarketingRecordMapper">
+  <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCmarketingRecord">
+    <id column="c_key" jdbcType="INTEGER" property="cKey" />
+    <result column="c_cm_id" jdbcType="INTEGER" property="cCmId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_management" jdbcType="VARCHAR" property="cManagement" />
+    <result column="c_demand" jdbcType="VARCHAR" property="cDemand" />
+    <result column="c_report" jdbcType="VARCHAR" property="cReport" />
+    <result column="c_testimonials" jdbcType="VARCHAR" property="cTestimonials" />
+    <result column="c_evaluation" jdbcType="VARCHAR" property="cEvaluation" />
+    <result column="c_date" jdbcType="DATE" property="cDate" />
+    <result column="c_id" jdbcType="INTEGER" property="cId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    c_key, c_cm_id, c_name, c_management, c_demand, c_report, c_testimonials, c_evaluation, 
+    c_date, c_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_cmarketing_record
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cmarketing_record
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCmarketingRecord">
+    insert into gzcrm_cmarketing_record (c_cm_id, c_name,
+      c_management, c_demand, c_report, 
+      c_testimonials, c_evaluation, c_date, 
+      c_id)
+   values (#{cCmId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR},
+      #{cManagement,jdbcType=VARCHAR}, #{cDemand,jdbcType=VARCHAR}, #{cReport,jdbcType=VARCHAR},
+      #{cTestimonials,jdbcType=VARCHAR}, #{cEvaluation,jdbcType=VARCHAR}, curdate(),
+      #{cId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCmarketingRecord">
+    <selectKey keyProperty="cKey" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gzcrm_cmarketing_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      c_key,
+      <if test="cCmId != null">
+        c_cm_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="cManagement != null">
+        c_management,
+      </if>
+      <if test="cDemand != null">
+        c_demand,
+      </if>
+      <if test="cReport != null">
+        c_report,
+      </if>
+      <if test="cTestimonials != null">
+        c_testimonials,
+      </if>
+      <if test="cEvaluation != null">
+        c_evaluation,
+      </if>
+      <if test="cDate != null">
+        c_date,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{cKey,jdbcType=INTEGER},
+      <if test="cCmId != null">
+        #{cCmId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cManagement != null">
+        #{cManagement,jdbcType=VARCHAR},
+      </if>
+      <if test="cDemand != null">
+        #{cDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="cReport != null">
+        #{cReport,jdbcType=VARCHAR},
+      </if>
+      <if test="cTestimonials != null">
+        #{cTestimonials,jdbcType=VARCHAR},
+      </if>
+      <if test="cEvaluation != null">
+        #{cEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        #{cDate,jdbcType=DATE},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCmarketingRecord">
+    update gzcrm_cmarketing_record
+    <set>
+      <if test="cCmId != null">
+        c_cm_id = #{cCmId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cManagement != null">
+        c_management = #{cManagement,jdbcType=VARCHAR},
+      </if>
+      <if test="cDemand != null">
+        c_demand = #{cDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="cReport != null">
+        c_report = #{cReport,jdbcType=VARCHAR},
+      </if>
+      <if test="cTestimonials != null">
+        c_testimonials = #{cTestimonials,jdbcType=VARCHAR},
+      </if>
+      <if test="cEvaluation != null">
+        c_evaluation = #{cEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        c_date = #{cDate,jdbcType=DATE},
+      </if>
+      <if test="cId != null">
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCmarketingRecord">
+    update gzcrm_cmarketing_record
+    set c_cm_id = #{cCmId,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR},
+      c_management = #{cManagement,jdbcType=VARCHAR},
+      c_demand = #{cDemand,jdbcType=VARCHAR},
+      c_report = #{cReport,jdbcType=VARCHAR},
+      c_testimonials = #{cTestimonials,jdbcType=VARCHAR},
+      c_evaluation = #{cEvaluation,jdbcType=VARCHAR},
+      c_date = #{cDate,jdbcType=DATE},
+      c_id = #{cId,jdbcType=INTEGER}
+    where c_key = #{cKey,jdbcType=INTEGER}
+  </update>
+  <select id="queryList" resultMap="BaseResultMap">
+    select *
+    from gzcrm_cmarketing_record
+    where 1 = 1
+    <if test="p1!=null and p1!='' and p1!='%null%'">
+      and c_name like #{p1}
+    </if>
+  </select>
+</mapper>

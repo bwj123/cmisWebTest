@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCminfoMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCminfo">
+        <id column="cm_id" jdbcType="INTEGER" property="cmId"/>
+        <result column="cm_name" jdbcType="VARCHAR" property="cmName"/>
+        <result column="cm_sex" jdbcType="VARCHAR" property="cmSex"/>
+        <result column="cm_ssn" jdbcType="VARCHAR" property="cmSsn"/>
+        <result column="cm_birthday" jdbcType="DATE" property="cmBirthday"/>
+        <result column="cm_age" jdbcType="INTEGER" property="cmAge"/>
+        <result column="cm_nation" jdbcType="VARCHAR" property="cmNation"/>
+        <result column="cm_political_landscape" jdbcType="VARCHAR" property="cmPoliticalLandscape"/>
+        <result column="cm_hometown" jdbcType="VARCHAR" property="cmHometown"/>
+        <result column="cm_photo" jdbcType="VARCHAR" property="cmPhoto"/>
+        <result column="cm_education" jdbcType="VARCHAR" property="cmEducation"/>
+        <result column="cm_degree" jdbcType="VARCHAR" property="cmDegree"/>
+        <result column="cm_status" jdbcType="VARCHAR" property="cmStatus"/>
+        <result column="cm_graduated" jdbcType="VARCHAR" property="cmGraduated"/>
+        <result column="cm_professional_titles" jdbcType="VARCHAR" property="cmProfessionalTitles"/>
+        <result column="cm_hiredate" jdbcType="DATE" property="cmHiredate"/>
+        <result column="cm_entry_time" jdbcType="DATE" property="cmEntryTime"/>
+        <result column="cm_financial_years" jdbcType="INTEGER" property="cmFinancialYears"/>
+        <result column="cm_working_years" jdbcType="INTEGER" property="cmWorkingYears"/>
+        <result column="cm_exit_time" jdbcType="DATE" property="cmExitTime"/>
+        <result column="cm_results_last_year" jdbcType="INTEGER" property="cmResultsLastYear"/>
+        <result column="cm_total_credits" jdbcType="INTEGER" property="cmTotalCredits"/>
+        <result column="cm_level" jdbcType="VARCHAR" property="cmLevel"/>
+        <result column="cm_unit" jdbcType="VARCHAR" property="cmUnit"/>
+        <result column="cm_dept" jdbcType="VARCHAR" property="cmDept"/>
+        <result column="cm_position" jdbcType="VARCHAR" property="cmPosition"/>
+        <result column="cm_tel" jdbcType="VARCHAR" property="cmTel"/>
+        <result column="cm_mobile" jdbcType="VARCHAR" property="cmMobile"/>
+        <result column="cm_business_lines" jdbcType="VARCHAR" property="cmBusinessLines"/>
+        <result column="cm_certificate_number" jdbcType="VARCHAR" property="cmCertificateNumber"/>
+        <result column="cm_qualification_date" jdbcType="DATE" property="cmQualificationDate"/>
+        <result column="cm_qualification_period" jdbcType="INTEGER" property="cmQualificationPeriod"/>
+        <result column="cm_status_number" jdbcType="VARCHAR" property="cmStatusNumber"/>
+        <result column="cm_status_number_date" jdbcType="DATE" property="cmStatusNumberDate"/>
+        <result column="cm_status_number_period" jdbcType="INTEGER" property="cmStatusNumberPeriod"/>
+        <result column="cm_level_number" jdbcType="VARCHAR" property="cmLevelNumber"/>
+        <result column="cm_level_date" jdbcType="DATE" property="cmLevelDate"/>
+        <result column="cm_level_period" jdbcType="INTEGER" property="cmLevelPeriod"/>
+        <result column="cm_modification_date" jdbcType="DATE" property="cmModificationDate"/>
+        <result column="cm_modification_person" jdbcType="VARCHAR" property="cmModificationPerson"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    cm_id, cm_name, cm_sex, cm_ssn, cm_birthday, cm_age, cm_nation, cm_political_landscape, 
+    cm_hometown, cm_photo, cm_education, cm_degree, cm_status, cm_graduated, cm_professional_titles, 
+    cm_hiredate, cm_entry_time, cm_financial_years, cm_working_years, cm_exit_time, cm_results_last_year, 
+    cm_total_credits, cm_level, cm_unit, cm_dept, cm_position, cm_tel, cm_mobile, cm_business_lines, 
+    cm_certificate_number, cm_qualification_date, cm_qualification_period, cm_status_number, 
+    cm_status_number_date, cm_status_number_period, cm_level_number, cm_level_date, cm_level_period, 
+    cm_modification_date, cm_modification_person
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cminfo
+        where cm_id = #{cmId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cminfo
+    where cm_id = #{cmId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCminfo">
+    insert into gzcrm_cminfo (cm_name, cm_sex,
+      cm_ssn, cm_birthday, cm_age,
+      cm_nation, cm_political_landscape, cm_hometown,
+      cm_photo, cm_education, cm_degree,
+      cm_status, cm_graduated, cm_professional_titles,
+      cm_hiredate, cm_entry_time, cm_financial_years,
+      cm_working_years, cm_exit_time, cm_results_last_year,
+      cm_total_credits, cm_level, cm_unit,
+      cm_dept, cm_position, cm_tel,
+      cm_mobile, cm_business_lines, cm_certificate_number,
+      cm_qualification_date, cm_qualification_period,
+      cm_status_number, cm_status_number_date, cm_status_number_period,
+      cm_level_number, cm_level_date, cm_level_period,
+      cm_modification_date, cm_modification_person)
+    values (#{cmName,jdbcType=VARCHAR}, #{cmSex,jdbcType=VARCHAR},
+      #{cmSsn,jdbcType=VARCHAR}, #{cmBirthday,jdbcType=DATE}, #{cmAge,jdbcType=INTEGER},
+      #{cmNation,jdbcType=VARCHAR}, #{cmPoliticalLandscape,jdbcType=VARCHAR}, #{cmHometown,jdbcType=VARCHAR},
+      #{cmPhoto,jdbcType=VARCHAR}, #{cmEducation,jdbcType=VARCHAR}, #{cmDegree,jdbcType=VARCHAR},
+      #{cmStatus,jdbcType=VARCHAR}, #{cmGraduated,jdbcType=VARCHAR}, #{cmProfessionalTitles,jdbcType=VARCHAR},
+      #{cmHiredate,jdbcType=DATE}, #{cmEntryTime,jdbcType=DATE}, #{cmFinancialYears,jdbcType=INTEGER},
+      #{cmWorkingYears,jdbcType=INTEGER}, #{cmExitTime,jdbcType=DATE}, #{cmResultsLastYear,jdbcType=INTEGER},
+      #{cmTotalCredits,jdbcType=INTEGER}, #{cmLevel,jdbcType=VARCHAR}, #{cmUnit,jdbcType=VARCHAR},
+      #{cmDept,jdbcType=VARCHAR}, #{cmPosition,jdbcType=VARCHAR}, #{cmTel,jdbcType=VARCHAR},
+      #{cmMobile,jdbcType=VARCHAR}, #{cmBusinessLines,jdbcType=VARCHAR}, #{cmCertificateNumber,jdbcType=VARCHAR},
+      #{cmQualificationDate,jdbcType=DATE}, #{cmQualificationPeriod,jdbcType=INTEGER},
+      #{cmStatusNumber,jdbcType=VARCHAR}, #{cmStatusNumberDate,jdbcType=DATE}, #{cmStatusNumberPeriod,jdbcType=INTEGER},
+      #{cmLevelNumber,jdbcType=VARCHAR}, #{cmLevelDate,jdbcType=DATE}, #{cmLevelPeriod,jdbcType=INTEGER},
+      curdate(), #{cmModificationPerson,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCminfo">
+        insert into gzcrm_cminfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cm_id,
+            <if test="cmName != null">
+                cm_name,
+            </if>
+            <if test="cmSex != null">
+                cm_sex,
+            </if>
+            <if test="cmSsn != null">
+                cm_ssn,
+            </if>
+            <if test="cmBirthday != null">
+                cm_birthday,
+            </if>
+            <if test="cmAge != null">
+                cm_age,
+            </if>
+            <if test="cmNation != null">
+                cm_nation,
+            </if>
+            <if test="cmPoliticalLandscape != null">
+                cm_political_landscape,
+            </if>
+            <if test="cmHometown != null">
+                cm_hometown,
+            </if>
+            <if test="cmPhoto != null">
+                cm_photo,
+            </if>
+            <if test="cmEducation != null">
+                cm_education,
+            </if>
+            <if test="cmDegree != null">
+                cm_degree,
+            </if>
+            <if test="cmStatus != null">
+                cm_status,
+            </if>
+            <if test="cmGraduated != null">
+                cm_graduated,
+            </if>
+            <if test="cmProfessionalTitles != null">
+                cm_professional_titles,
+            </if>
+            <if test="cmHiredate != null">
+                cm_hiredate,
+            </if>
+            <if test="cmEntryTime != null">
+                cm_entry_time,
+            </if>
+            <if test="cmFinancialYears != null">
+                cm_financial_years,
+            </if>
+            <if test="cmWorkingYears != null">
+                cm_working_years,
+            </if>
+            <if test="cmExitTime != null">
+                cm_exit_time,
+            </if>
+            <if test="cmResultsLastYear != null">
+                cm_results_last_year,
+            </if>
+            <if test="cmTotalCredits != null">
+                cm_total_credits,
+            </if>
+            <if test="cmLevel != null">
+                cm_level,
+            </if>
+            <if test="cmUnit != null">
+                cm_unit,
+            </if>
+            <if test="cmDept != null">
+                cm_dept,
+            </if>
+            <if test="cmPosition != null">
+                cm_position,
+            </if>
+            <if test="cmTel != null">
+                cm_tel,
+            </if>
+            <if test="cmMobile != null">
+                cm_mobile,
+            </if>
+            <if test="cmBusinessLines != null">
+                cm_business_lines,
+            </if>
+            <if test="cmCertificateNumber != null">
+                cm_certificate_number,
+            </if>
+            <if test="cmQualificationDate != null">
+                cm_qualification_date,
+            </if>
+            <if test="cmQualificationPeriod != null">
+                cm_qualification_period,
+            </if>
+            <if test="cmStatusNumber != null">
+                cm_status_number,
+            </if>
+            <if test="cmStatusNumberDate != null">
+                cm_status_number_date,
+            </if>
+            <if test="cmStatusNumberPeriod != null">
+                cm_status_number_period,
+            </if>
+            <if test="cmLevelNumber != null">
+                cm_level_number,
+            </if>
+            <if test="cmLevelDate != null">
+                cm_level_date,
+            </if>
+            <if test="cmLevelPeriod != null">
+                cm_level_period,
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date,
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cmId,jdbcType=INTEGER},
+            <if test="cmName != null">
+                #{cmName,jdbcType=VARCHAR},
+            </if>
+            <if test="cmSex != null">
+                #{cmSex,jdbcType=VARCHAR},
+            </if>
+            <if test="cmSsn != null">
+                #{cmSsn,jdbcType=VARCHAR},
+            </if>
+            <if test="cmBirthday != null">
+                #{cmBirthday,jdbcType=DATE},
+            </if>
+            <if test="cmAge != null">
+                #{cmAge,jdbcType=INTEGER},
+            </if>
+            <if test="cmNation != null">
+                #{cmNation,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPoliticalLandscape != null">
+                #{cmPoliticalLandscape,jdbcType=VARCHAR},
+            </if>
+            <if test="cmHometown != null">
+                #{cmHometown,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPhoto != null">
+                #{cmPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cmEducation != null">
+                #{cmEducation,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDegree != null">
+                #{cmDegree,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStatus != null">
+                #{cmStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cmGraduated != null">
+                #{cmGraduated,jdbcType=VARCHAR},
+            </if>
+            <if test="cmProfessionalTitles != null">
+                #{cmProfessionalTitles,jdbcType=VARCHAR},
+            </if>
+            <if test="cmHiredate != null">
+                #{cmHiredate,jdbcType=DATE},
+            </if>
+            <if test="cmEntryTime != null">
+                #{cmEntryTime,jdbcType=DATE},
+            </if>
+            <if test="cmFinancialYears != null">
+                #{cmFinancialYears,jdbcType=INTEGER},
+            </if>
+            <if test="cmWorkingYears != null">
+                #{cmWorkingYears,jdbcType=INTEGER},
+            </if>
+            <if test="cmExitTime != null">
+                #{cmExitTime,jdbcType=DATE},
+            </if>
+            <if test="cmResultsLastYear != null">
+                #{cmResultsLastYear,jdbcType=INTEGER},
+            </if>
+            <if test="cmTotalCredits != null">
+                #{cmTotalCredits,jdbcType=INTEGER},
+            </if>
+            <if test="cmLevel != null">
+                #{cmLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmUnit != null">
+                #{cmUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDept != null">
+                #{cmDept,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPosition != null">
+                #{cmPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="cmTel != null">
+                #{cmTel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmMobile != null">
+                #{cmMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="cmBusinessLines != null">
+                #{cmBusinessLines,jdbcType=VARCHAR},
+            </if>
+            <if test="cmCertificateNumber != null">
+                #{cmCertificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmQualificationDate != null">
+                #{cmQualificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmQualificationPeriod != null">
+                #{cmQualificationPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmStatusNumber != null">
+                #{cmStatusNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStatusNumberDate != null">
+                #{cmStatusNumberDate,jdbcType=DATE},
+            </if>
+            <if test="cmStatusNumberPeriod != null">
+                #{cmStatusNumberPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmLevelNumber != null">
+                #{cmLevelNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmLevelDate != null">
+                #{cmLevelDate,jdbcType=DATE},
+            </if>
+            <if test="cmLevelPeriod != null">
+                #{cmLevelPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmModificationDate != null">
+                #{cmModificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmModificationPerson != null">
+                #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCminfo">
+        update gzcrm_cminfo
+        <set>
+            <if test="cmName != null">
+                cm_name = #{cmName,jdbcType=VARCHAR},
+            </if>
+            <if test="cmSex != null">
+                cm_sex = #{cmSex,jdbcType=VARCHAR},
+            </if>
+            <if test="cmSsn != null">
+                cm_ssn = #{cmSsn,jdbcType=VARCHAR},
+            </if>
+            <if test="cmBirthday != null">
+                cm_birthday = #{cmBirthday,jdbcType=DATE},
+            </if>
+            <if test="cmAge != null">
+                cm_age = #{cmAge,jdbcType=INTEGER},
+            </if>
+            <if test="cmNation != null">
+                cm_nation = #{cmNation,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPoliticalLandscape != null">
+                cm_political_landscape = #{cmPoliticalLandscape,jdbcType=VARCHAR},
+            </if>
+            <if test="cmHometown != null">
+                cm_hometown = #{cmHometown,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPhoto != null">
+                cm_photo = #{cmPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cmEducation != null">
+                cm_education = #{cmEducation,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDegree != null">
+                cm_degree = #{cmDegree,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStatus != null">
+                cm_status = #{cmStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cmGraduated != null">
+                cm_graduated = #{cmGraduated,jdbcType=VARCHAR},
+            </if>
+            <if test="cmProfessionalTitles != null">
+                cm_professional_titles = #{cmProfessionalTitles,jdbcType=VARCHAR},
+            </if>
+            <if test="cmHiredate != null">
+                cm_hiredate = #{cmHiredate,jdbcType=DATE},
+            </if>
+            <if test="cmEntryTime != null">
+                cm_entry_time = #{cmEntryTime,jdbcType=DATE},
+            </if>
+            <if test="cmFinancialYears != null">
+                cm_financial_years = #{cmFinancialYears,jdbcType=INTEGER},
+            </if>
+            <if test="cmWorkingYears != null">
+                cm_working_years = #{cmWorkingYears,jdbcType=INTEGER},
+            </if>
+            <if test="cmExitTime != null">
+                cm_exit_time = #{cmExitTime,jdbcType=DATE},
+            </if>
+            <if test="cmResultsLastYear != null">
+                cm_results_last_year = #{cmResultsLastYear,jdbcType=INTEGER},
+            </if>
+            <if test="cmTotalCredits != null">
+                cm_total_credits = #{cmTotalCredits,jdbcType=INTEGER},
+            </if>
+            <if test="cmLevel != null">
+                cm_level = #{cmLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmUnit != null">
+                cm_unit = #{cmUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDept != null">
+                cm_dept = #{cmDept,jdbcType=VARCHAR},
+            </if>
+            <if test="cmPosition != null">
+                cm_position = #{cmPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="cmTel != null">
+                cm_tel = #{cmTel,jdbcType=VARCHAR},
+            </if>
+            <if test="cmMobile != null">
+                cm_mobile = #{cmMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="cmBusinessLines != null">
+                cm_business_lines = #{cmBusinessLines,jdbcType=VARCHAR},
+            </if>
+            <if test="cmCertificateNumber != null">
+                cm_certificate_number = #{cmCertificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmQualificationDate != null">
+                cm_qualification_date = #{cmQualificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmQualificationPeriod != null">
+                cm_qualification_period = #{cmQualificationPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmStatusNumber != null">
+                cm_status_number = #{cmStatusNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmStatusNumberDate != null">
+                cm_status_number_date = #{cmStatusNumberDate,jdbcType=DATE},
+            </if>
+            <if test="cmStatusNumberPeriod != null">
+                cm_status_number_period = #{cmStatusNumberPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmLevelNumber != null">
+                cm_level_number = #{cmLevelNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cmLevelDate != null">
+                cm_level_date = #{cmLevelDate,jdbcType=DATE},
+            </if>
+            <if test="cmLevelPeriod != null">
+                cm_level_period = #{cmLevelPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="cmModificationDate != null">
+                cm_modification_date = #{cmModificationDate,jdbcType=DATE},
+            </if>
+            <if test="cmModificationPerson != null">
+                cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cm_id = #{cmId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCminfo">
+     update gzcrm_cminfo
+    set cm_name = #{cmName,jdbcType=VARCHAR},
+      cm_sex = #{cmSex,jdbcType=VARCHAR},
+      cm_ssn = #{cmSsn,jdbcType=VARCHAR},
+      cm_birthday = #{cmBirthday,jdbcType=DATE},
+      cm_age = #{cmAge,jdbcType=INTEGER},
+      cm_nation = #{cmNation,jdbcType=VARCHAR},
+      cm_political_landscape = #{cmPoliticalLandscape,jdbcType=VARCHAR},
+      cm_hometown = #{cmHometown,jdbcType=VARCHAR},
+      cm_photo = #{cmPhoto,jdbcType=VARCHAR},
+      cm_education = #{cmEducation,jdbcType=VARCHAR},
+      cm_degree = #{cmDegree,jdbcType=VARCHAR},
+      cm_status = #{cmStatus,jdbcType=VARCHAR},
+      cm_graduated = #{cmGraduated,jdbcType=VARCHAR},
+      cm_professional_titles = #{cmProfessionalTitles,jdbcType=VARCHAR},
+      cm_hiredate = #{cmHiredate,jdbcType=DATE},
+      cm_entry_time = #{cmEntryTime,jdbcType=DATE},
+      cm_financial_years = #{cmFinancialYears,jdbcType=INTEGER},
+      cm_working_years = #{cmWorkingYears,jdbcType=INTEGER},
+      cm_exit_time = #{cmExitTime,jdbcType=DATE},
+      cm_results_last_year = #{cmResultsLastYear,jdbcType=INTEGER},
+      cm_total_credits = #{cmTotalCredits,jdbcType=INTEGER},
+      cm_level = #{cmLevel,jdbcType=VARCHAR},
+      cm_unit = #{cmUnit,jdbcType=VARCHAR},
+      cm_dept = #{cmDept,jdbcType=VARCHAR},
+      cm_position = #{cmPosition,jdbcType=VARCHAR},
+      cm_tel = #{cmTel,jdbcType=VARCHAR},
+      cm_mobile = #{cmMobile,jdbcType=VARCHAR},
+      cm_business_lines = #{cmBusinessLines,jdbcType=VARCHAR},
+      cm_certificate_number = #{cmCertificateNumber,jdbcType=VARCHAR},
+      cm_qualification_date = #{cmQualificationDate,jdbcType=DATE},
+      cm_qualification_period = #{cmQualificationPeriod,jdbcType=INTEGER},
+      cm_status_number = #{cmStatusNumber,jdbcType=VARCHAR},
+      cm_status_number_date = #{cmStatusNumberDate,jdbcType=DATE},
+      cm_status_number_period = #{cmStatusNumberPeriod,jdbcType=INTEGER},
+      cm_level_number = #{cmLevelNumber,jdbcType=VARCHAR},
+      cm_level_date = #{cmLevelDate,jdbcType=DATE},
+      cm_level_period = #{cmLevelPeriod,jdbcType=INTEGER},
+      cm_modification_date = #{cmModificationDate,jdbcType=DATE},
+      cm_modification_person = #{cmModificationPerson,jdbcType=VARCHAR}
+    where cm_id = #{cmId,jdbcType=INTEGER}
+  </update>
+
+    <select id="queryCminfoList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cminfo
+        where 1 = 1
+        <if test="cmUnit!=null and cmUnit!='' and cmUnit!='%null%' and cmUnit!='%%'">
+            and cm_unit like #{cmUnit}
+        </if>
+        <if test="status!=null and status!=''">
+            and cm_status = #{status}
+        </if>
+        <if test="cmName!=null and cmName!='' and cmName!='%null%' and cmName!='%%'">
+            and cm_name like #{cmName}
+        </if>
+    </select>
+
+    <select id="queryDetil" resultMap="BaseResultMap">
+        select *
+        from gzcrm_cminfo
+        where 1 = 1
+        <if test="c1!=null and c1 != '' and c1 !='%null%'">
+            and cm_unit like #{c1}
+        </if>
+        <if test="c2 != null and c2 != ''">
+            and cm_status = #{c2}
+        </if>
+        <if test="c3 != null and c3 != ''">
+            and cm_sex = #{c3}
+        </if>
+        <if test="c4 != null and c4 != ''">
+            and cm_education = #{c4}
+        </if>
+        <if test="c5 != null and c5 != ''">
+            and cm_professional_titles = #{c5}
+        </if>
+        <if test="c6 != null and c6 != ''">
+            and cm_level = #{c6}
+        </if>
+
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+    select * from gzcrm_cminfo
+  </select>
+</mapper>

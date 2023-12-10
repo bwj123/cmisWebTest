@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmCminfoWorkMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmCminfoWork">
+        <id column="cm_key" jdbcType="INTEGER" property="cmKey"/>
+        <result column="cm_id" jdbcType="INTEGER" property="cmId"/>
+        <result column="cm_management" jdbcType="VARCHAR" property="cmManagement"/>
+        <result column="cm_product" jdbcType="VARCHAR" property="cmProduct"/>
+        <result column="cm_loan" jdbcType="VARCHAR" property="cmLoan"/>
+        <result column="cm_warning" jdbcType="VARCHAR" property="cmWarning"/>
+        <result column="cm_issue" jdbcType="VARCHAR" property="cmIssue"/>
+        <result column="cm_work_proposal" jdbcType="VARCHAR" property="cmWorkProposal"/>
+        <result column="cm_date" jdbcType="DATE" property="cmDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    cm_key, cm_id, cm_management, cm_product, cm_loan, cm_warning, cm_issue, cm_work_proposal, 
+    cm_date
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_cminfo_work
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cminfo_work
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmCminfoWork">
+      insert into gzcrm_cminfo_work (cm_id, cm_management,
+      cm_product, cm_loan, cm_warning,
+      cm_issue, cm_work_proposal, cm_date
+      )
+    values (#{cmId,jdbcType=INTEGER}, #{cmManagement,jdbcType=VARCHAR},
+      #{cmProduct,jdbcType=VARCHAR}, #{cmLoan,jdbcType=VARCHAR}, #{cmWarning,jdbcType=VARCHAR},
+      #{cmIssue,jdbcType=VARCHAR}, #{cmWorkProposal,jdbcType=VARCHAR}, curdate()
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmCminfoWork">
+        <selectKey keyProperty="cmKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_cminfo_work
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            cm_key,
+            <if test="cmId != null">
+                cm_id,
+            </if>
+            <if test="cmManagement != null">
+                cm_management,
+            </if>
+            <if test="cmProduct != null">
+                cm_product,
+            </if>
+            <if test="cmLoan != null">
+                cm_loan,
+            </if>
+            <if test="cmWarning != null">
+                cm_warning,
+            </if>
+            <if test="cmIssue != null">
+                cm_issue,
+            </if>
+            <if test="cmWorkProposal != null">
+                cm_work_proposal,
+            </if>
+            <if test="cmDate != null">
+                cm_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{cmKey,jdbcType=INTEGER},
+            <if test="cmId != null">
+                #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmManagement != null">
+                #{cmManagement,jdbcType=VARCHAR},
+            </if>
+            <if test="cmProduct != null">
+                #{cmProduct,jdbcType=VARCHAR},
+            </if>
+            <if test="cmLoan != null">
+                #{cmLoan,jdbcType=VARCHAR},
+            </if>
+            <if test="cmWarning != null">
+                #{cmWarning,jdbcType=VARCHAR},
+            </if>
+            <if test="cmIssue != null">
+                #{cmIssue,jdbcType=VARCHAR},
+            </if>
+            <if test="cmWorkProposal != null">
+                #{cmWorkProposal,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDate != null">
+                #{cmDate,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmCminfoWork">
+        update gzcrm_cminfo_work
+        <set>
+            <if test="cmId != null">
+                cm_id = #{cmId,jdbcType=INTEGER},
+            </if>
+            <if test="cmManagement != null">
+                cm_management = #{cmManagement,jdbcType=VARCHAR},
+            </if>
+            <if test="cmProduct != null">
+                cm_product = #{cmProduct,jdbcType=VARCHAR},
+            </if>
+            <if test="cmLoan != null">
+                cm_loan = #{cmLoan,jdbcType=VARCHAR},
+            </if>
+            <if test="cmWarning != null">
+                cm_warning = #{cmWarning,jdbcType=VARCHAR},
+            </if>
+            <if test="cmIssue != null">
+                cm_issue = #{cmIssue,jdbcType=VARCHAR},
+            </if>
+            <if test="cmWorkProposal != null">
+                cm_work_proposal = #{cmWorkProposal,jdbcType=VARCHAR},
+            </if>
+            <if test="cmDate != null">
+                cm_date = #{cmDate,jdbcType=DATE},
+            </if>
+        </set>
+        where cm_key = #{cmKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmCminfoWork">
+    update gzcrm_cminfo_work
+    set cm_id = #{cmId,jdbcType=INTEGER},
+      cm_management = #{cmManagement,jdbcType=VARCHAR},
+      cm_product = #{cmProduct,jdbcType=VARCHAR},
+      cm_loan = #{cmLoan,jdbcType=VARCHAR},
+      cm_warning = #{cmWarning,jdbcType=VARCHAR},
+      cm_issue = #{cmIssue,jdbcType=VARCHAR},
+      cm_work_proposal = #{cmWorkProposal,jdbcType=VARCHAR},
+      cm_date = #{cmDate,jdbcType=DATE}
+    where cm_key = #{cmKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryList" resultMap="BaseResultMap">
+        select * from gzcrm_cminfo_work
+        where 1 = 1
+        <if test="workKey!=null and workKey!=''">
+            and cm_key = #{workKey}
+        </if>
+        <if test="inDate!=null and inDate!=''">
+            and cm_date = #{inDate}
+        </if>
+    </select>
+</mapper>

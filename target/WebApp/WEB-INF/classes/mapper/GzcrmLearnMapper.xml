@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjq.inspur.mapper.GzcrmLearnMapper">
+    <resultMap id="BaseResultMap" type="com.pjq.inspur.pojo.GzcrmLearn">
+        <id column="l_key" jdbcType="INTEGER" property="lKey"/>
+        <result column="l_name" jdbcType="VARCHAR" property="lName"/>
+        <result column="l_type" jdbcType="VARCHAR" property="lType"/>
+        <result column="l_des" jdbcType="VARCHAR" property="lDes"/>
+        <result column="l_url" jdbcType="VARCHAR" property="lUrl"/>
+        <result column="l_line" jdbcType="VARCHAR" property="lLine"/>
+        <result column="l_uper" jdbcType="VARCHAR" property="lUper"/>
+        <result column="l_unit" jdbcType="VARCHAR" property="lUnit"/>
+        <result column="l_date" jdbcType="DATE" property="lDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    l_key, l_name, l_type, l_des, l_url, l_line, l_uper, l_unit, l_date
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_learn
+        where l_key = #{lKey,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_learn
+    where l_key = #{lKey,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.pjq.inspur.pojo.GzcrmLearn">
+     insert into gzcrm_learn ( l_name, l_type,
+      l_des, l_url, l_line,
+      l_uper, l_unit, l_date)
+    values ( #{lName,jdbcType=VARCHAR}, #{lType,jdbcType=VARCHAR},
+      #{lDes,jdbcType=VARCHAR}, #{lUrl,jdbcType=VARCHAR}, #{lLine,jdbcType=VARCHAR},
+      #{lUper,jdbcType=VARCHAR}, #{lUnit,jdbcType=VARCHAR}, curdate())
+  </insert>
+    <insert id="insertSelective" parameterType="com.pjq.inspur.pojo.GzcrmLearn">
+        <selectKey keyProperty="lKey" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into gzcrm_learn
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            l_key,
+            <if test="lName != null">
+                l_name,
+            </if>
+            <if test="lType != null">
+                l_type,
+            </if>
+            <if test="lDes != null">
+                l_des,
+            </if>
+            <if test="lUrl != null">
+                l_url,
+            </if>
+            <if test="lLine != null">
+                l_line,
+            </if>
+            <if test="lUper != null">
+                l_uper,
+            </if>
+            <if test="lUnit != null">
+                l_unit,
+            </if>
+            <if test="lDate != null">
+                l_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{lKey,jdbcType=INTEGER},
+            <if test="lName != null">
+                #{lName,jdbcType=VARCHAR},
+            </if>
+            <if test="lType != null">
+                #{lType,jdbcType=VARCHAR},
+            </if>
+            <if test="lDes != null">
+                #{lDes,jdbcType=VARCHAR},
+            </if>
+            <if test="lUrl != null">
+                #{lUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="lLine != null">
+                #{lLine,jdbcType=VARCHAR},
+            </if>
+            <if test="lUper != null">
+                #{lUper,jdbcType=VARCHAR},
+            </if>
+            <if test="lUnit != null">
+                #{lUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="lDate != null">
+                #{lDate,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pjq.inspur.pojo.GzcrmLearn">
+        update gzcrm_learn
+        <set>
+            <if test="lName != null">
+                l_name = #{lName,jdbcType=VARCHAR},
+            </if>
+            <if test="lType != null">
+                l_type = #{lType,jdbcType=VARCHAR},
+            </if>
+            <if test="lDes != null">
+                l_des = #{lDes,jdbcType=VARCHAR},
+            </if>
+            <if test="lUrl != null">
+                l_url = #{lUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="lLine != null">
+                l_line = #{lLine,jdbcType=VARCHAR},
+            </if>
+            <if test="lUper != null">
+                l_uper = #{lUper,jdbcType=VARCHAR},
+            </if>
+            <if test="lUnit != null">
+                l_unit = #{lUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="lDate != null">
+                l_date = #{lDate,jdbcType=DATE},
+            </if>
+        </set>
+        where l_key = #{lKey,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pjq.inspur.pojo.GzcrmLearn">
+    update gzcrm_learn
+    set l_name = #{lName,jdbcType=VARCHAR},
+      l_type = #{lType,jdbcType=VARCHAR},
+      l_des = #{lDes,jdbcType=VARCHAR},
+      l_url = #{lUrl,jdbcType=VARCHAR},
+      l_line = #{lLine,jdbcType=VARCHAR},
+      l_uper = #{lUper,jdbcType=VARCHAR},
+      l_unit = #{lUnit,jdbcType=VARCHAR},
+      l_date = #{lDate,jdbcType=DATE}
+    where l_key = #{lKey,jdbcType=INTEGER}
+  </update>
+    <select id="queryLearnList" resultMap="BaseResultMap">
+        select *
+        from gzcrm_learn
+        where 1 = 1
+        <if test="lName!=null and lName!='' and lName!='%null%'">
+            and l_name like #{lName}
+        </if>
+        <if test="lType!=null and lType!=''">
+            and l_type = #{lType}
+        </if>
+    </select>
+</mapper>
